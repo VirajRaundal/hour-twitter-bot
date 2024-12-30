@@ -44,7 +44,7 @@ def calculate_year_progress():
 def create_tweet_text(hours_passed, hours_remaining):
     """Create formatted tweet text"""
     pacific_time = datetime.now(pytz.timezone('America/Los_Angeles'))
-    return f"2025 Progress Update 🕒 (PST)\n\nHours passed: {hours_passed:,}\nHours remaining: {hours_remaining:,}\n\nUpdated: {pacific_time.strftime('%I:%M %p')}\n\n"
+    return f"2025 Progress Update 🕒 \n\nHours passed: {hours_passed:,}\nHours remaining: {hours_remaining:,}\n\n"
 
 def main():
     # Set up Twitter API
