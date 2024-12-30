@@ -1,1 +1,1 @@
-web: your-command-here
+web: python bot.py
