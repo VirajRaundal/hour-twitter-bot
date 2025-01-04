@@ -3,7 +3,6 @@ from datetime import datetime, timezone
 import time
 import os
 from dotenv import load_dotenv
-import pytz
 
 # Load environment variables
 load_dotenv()
@@ -25,14 +24,13 @@ def setup_twitter_api():
     return client
 
 def calculate_year_progress():
-    """Calculate hours passed and remaining in 2025 (Pacific Time)"""
-    # Get current Pacific Time
-    pacific_tz = pytz.timezone('America/Los_Angeles')
-    now = datetime.now(pacific_tz)
+    """Calculate hours passed and remaining in 2025"""
+    # Get current UTC time
+    now = datetime.now(timezone.utc)
     
-    # Define start and end of 2025 in Pacific Time
-    year_start = pacific_tz.localize(datetime(2025, 1, 1))
-    year_end = pacific_tz.localize(datetime(2026, 1, 1))
+    # Define start and end of 2025
+    year_start = datetime(2025, 1, 1, tzinfo=timezone.utc)
+    year_end = datetime(2026, 1, 1, tzinfo=timezone.utc)
     
     # Calculate hours
     total_hours_in_year = 8760  # 365 days * 24 hours
@@ -43,8 +41,7 @@ def calculate_year_progress():
 
 def create_tweet_text(hours_passed, hours_remaining):
     """Create formatted tweet text"""
-    pacific_time = datetime.now(pytz.timezone('America/Los_Angeles'))
-    return f"2025 Progress Update 🕒 \n\nHours passed: {hours_passed:,}\nHours remaining: {hours_remaining:,}\n\n"
+    return f"2025 Progress Update 🕒\n\nHours passed: {hours_passed:,}\nHours remaining: {hours_remaining:,}\n\n"
 
 def main():
     # Set up Twitter API
